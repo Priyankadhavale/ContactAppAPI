@@ -1,0 +1,85 @@
+﻿<div class="jumbotron">
+    <h1>ASP.NET</h1>
+    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS, and JavaScript.</p>
+    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <h2>Getting started</h2>
+        <p>ASP.NET Web API is a framework that makes it easy to build HTTP services that reach
+        a broad range of clients, including browsers and mobile devices. ASP.NET Web API
+        is an ideal platform for building RESTful applications on the .NET Framework.</p>
+        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301870">Learn more &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Get more libraries</h2>
+        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
+        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301871">Learn more &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Web Hosting</h2>
+        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
+        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301872">Learn more &raquo;</a></p>
+    </div>
+</div>
+
+<div class="card-body">
+    <div class="row">
+        <div class="col-md-6">
+            <button (click)="createContact()" class="btn btn-outline-primary mb-1 btn-sm">
+                New Contact
+            </button>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <div *ngIf="contacts != null; else createMessage">
+            <table *ngIf="contacts; else loading" class="table table-hover table-responsive-md">
+                <thead class="header">
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="contact-row" *ngFor="let c of contacts;">
+                        <th scope="row">{{c.id}}</th>
+                        <td>{{c.firstName + c.lastName}}</td>
+                        <td>{{c.email}}</td>
+                        <td>{{c.phoneNumber}}</td>
+                        <td>
+
+                            <span class="float-right">
+
+                                <button (click)="showDetails(c)" class="btn btn-outline-primary mb-1 btn-sm">
+                                    DETAILS
+                                </button>
+
+                                <button (click)="editContact(c)" class="btn btn-outline-primary mb-1 btn-sm">
+                                    EDIT
+                                </button>
+
+                                <button (click)="deleteContact(c)" class="btn btn-outline-danger mb-1 btn-sm">
+                                    DELETE
+                                </button>
+
+                            </span>
+
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+
+            <ng-template #loading>
+                <span>loading contacts...</span>
+            </ng-template>
+        </div>
+
+        <ng-template #createMessage>
+            <span>There are no contacts available. Please create new contacts by clicking on New Contact...</span>
+        </ng-template>
+    </div>
+</div>
